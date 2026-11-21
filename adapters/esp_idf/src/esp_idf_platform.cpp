@@ -7,11 +7,15 @@
 namespace aw9523b::esp_idf {
 
 bool EspIdfPlatform::configure_output (uint32_t pin, uint8_t level) {
-    if (pin >= 64 || !GPIO_IS_VALID_OUTPUT_GPIO(pin)) {
+    if (pin >= 64) {
         return false;
     }
 
     const gpio_num_t gpio = static_cast<gpio_num_t>(pin);
+
+    if (!GPIO_IS_VALID_OUTPUT_GPIO(gpio)) {
+        return false;
+    }
 
     // Preload the output level before enabling the output.
     if (gpio_set_level(gpio, level) != ESP_OK) {
@@ -33,14 +37,17 @@ bool EspIdfPlatform::set_pin_level(
     uint32_t pin,
     uint8_t level
 ) {
-    if (pin >= 64 || !GPIO_IS_VALID_OUTPUT_GPIO(pin)) {
+    if (pin >= 64) {
         return false;
     }
 
-    return gpio_set_level(
-        static_cast<gpio_num_t>(pin),
-        level
-    ) == ESP_OK;
+    const gpio_num_t gpio = static_cast<gpio_num_t>(pin);
+
+    if (!GPIO_IS_VALID_OUTPUT_GPIO(gpio)) {
+        return false;
+    }
+
+    return gpio_set_level(gpio, level) == ESP_OK;
 }
 
 
