@@ -340,6 +340,30 @@ result Aw9523b::set_all_leds_dimmings (std::span<const uint8_t> dims) {
 }
 
 
+result Aw9523b::replace_led_dimmings (std::span<const LedInfo> leds) {
+    // Validate all pins before performing any writes.
+    for (const LedInfo& led : leds) {
+        if (static_cast<uint8_t>(led.pin) >= detail::MAX_PINS) {
+            return {Code::INVALID_PIN};
+        }
+    }
+
+    std::array<uint8_t, detail::MAX_PINS> data{};
+
+    for (const LedInfo& led : leds) {
+        const uint8_t reg = detail::helper::dim_register(led.pin);
+        data[reg - detail::reg::DIM0] = led.dimming;
+    }
+
+    if (!write_multiple(detail::reg::DIM0, data)) {
+        return {Code::I2C_ERROR};
+    }
+
+    return {Code::OK};
+}
+
+
+
 
 result Aw9523b::software_reset () {
     if (!write_register(detail::reg::SW_RSTN, 0x00)) {

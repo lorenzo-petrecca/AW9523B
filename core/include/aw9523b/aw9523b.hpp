@@ -238,6 +238,25 @@ public:
 
 
     /**
+     * @brief Replaces all LED dimming values using a list of channels.
+     *
+     * Sets the specified LED channels to their provided dimming values
+     * and clears all unspecified channels to zero.
+     *
+     * All 16 DIM registers are written in a single sequential
+     * I2C transaction. An empty list clears all channels.
+     *
+     * Duplicate pins are allowed; the last value takes precedence.
+     * Does not change the LED/GPIO function of any pin.
+     *
+     * @param leds LED pins and their corresponding dimming values.
+     * @return Operation result.
+     */
+    err::result replace_led_dimmings (std::span<const LedInfo> leds);
+
+
+
+    /**
      * @brief Performs a software reset of the AW9523B device.
      *
      * After reset verifies its identification.
