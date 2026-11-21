@@ -64,4 +64,4 @@ The platform-independent Core has been compiled. ESP-IDF and Arduino adapters re
 
 ## License
 
-License to be selected before publication.
+See [LICENSE](/LICENSE) file.
