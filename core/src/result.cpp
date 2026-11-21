@@ -32,7 +32,7 @@ const char* result::description () const noexcept {
 }
 
 
-const bool result::is_ok () const noexcept {
+bool result::is_ok () const noexcept {
     return code == Code::OK;
 }
 

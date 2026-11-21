@@ -46,7 +46,7 @@ struct result {
      * @brief Check if the result has the code “OK”
      * @return bool
      */
-    const bool is_ok () const noexcept;
+    bool is_ok () const noexcept;
 };
 
 
