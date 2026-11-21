@@ -1,0 +1,24 @@
+# CMake
+/build/
+/cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+compile_commands.json
+
+# ESP-IDF / PlatformIO
+/sdkconfig
+/sdkconfig.old
+/.pio/
+/.pioenvs/
+/.piolibdeps/
+
+# IDE / OS
+.DS_Store
+.vscode/*.log
+
+# Python packaging scripts
+__pycache__/
+*.pyc
+
+# Generated distribution packages
+/dist/

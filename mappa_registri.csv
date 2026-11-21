@@ -1,0 +1,10 @@
+﻿Registro;Indirizzo;Operazione della libreria
+Input_Port0/1;0x00-0x01;Lettura GPIO
+Output_Port0/1;0x02-0x03;Scrittura GPIO
+Config_Port0/1;0x04-0x05;Direzione input/output
+Int_Port0/1;0x06-0x07;Abilitazione interrupt
+ID;0x10;Identificazione del dispositivo
+GCR;0x11;Modalità uscite P0 e corrente massima LED
+LED_Mode;0x12-0x13;Selezione LED/GPIO
+DIM0-DIM15;0x20-0x2F;Luminosità dei singoli canali
+SW_RSTN;0x7F;Reset software
